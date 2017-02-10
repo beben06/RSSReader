@@ -1,4 +1,4 @@
-package com.dandine.benjamin.rssreader.Network;
+package com.dandine.benjamin.rssreader.network;
 
 import com.dandine.benjamin.rssreader.MainActivity;
 
@@ -10,6 +10,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 /**
+ * Configuration of Retrofit and OkHttp
  * Created by benjamindandine on 03/08/2016.
  */
 public class ApiClient {

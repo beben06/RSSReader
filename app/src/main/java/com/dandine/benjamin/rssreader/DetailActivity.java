@@ -9,13 +9,22 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.dandine.benjamin.rssreader.Model.Item;
+import com.dandine.benjamin.rssreader.model.Item;
 import com.squareup.picasso.Picasso;
 
+/**
+ * Detail Activity
+ * Display the details of an article
+ */
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     Item item;
 
+    /**
+     * On Create of the activity
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +48,11 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    /**
+     * Click on the button to read more
+     *
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         finish();

@@ -1,4 +1,4 @@
-package com.dandine.benjamin.rssreader.Adapter;
+package com.dandine.benjamin.rssreader.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.dandine.benjamin.rssreader.Model.Item;
 import com.dandine.benjamin.rssreader.R;
+import com.dandine.benjamin.rssreader.model.Item;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

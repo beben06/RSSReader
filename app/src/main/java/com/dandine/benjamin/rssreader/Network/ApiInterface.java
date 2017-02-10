@@ -1,6 +1,6 @@
-package com.dandine.benjamin.rssreader.Network;
+package com.dandine.benjamin.rssreader.network;
 
-import com.dandine.benjamin.rssreader.Model.RSS;
+import com.dandine.benjamin.rssreader.model.RSS;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
