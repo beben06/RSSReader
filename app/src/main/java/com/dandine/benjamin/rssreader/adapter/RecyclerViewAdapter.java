@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    OnItemClickListener listener;
+    private OnItemClickListener listener;
     private List<Item> items;
 
     public RecyclerViewAdapter(List<Item> items, OnItemClickListener listener) {

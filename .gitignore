@@ -46,3 +46,5 @@ captures/
 RSSReader.iml
 app/app.iml
 app/build/
+
+.DS_Store

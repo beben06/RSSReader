@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.dandine.benjamin.rssreader.adapter.RecyclerViewAdapter;
+import com.dandine.benjamin.rssreader.model.Enclosure;
 import com.dandine.benjamin.rssreader.model.Item;
 import com.dandine.benjamin.rssreader.model.RSS;
 import com.dandine.benjamin.rssreader.network.ApiClient;
@@ -26,9 +27,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
 
     //Base url of the website to fetch the RSS
     public static final String BASE_URL = " http://www.lemonde.fr";
-
-    RecyclerView recyclerView;
-    RecyclerViewAdapter.OnItemClickListener onItemClickListener;
+    private RecyclerViewAdapter.OnItemClickListener onItemClickListener;
+    private RecyclerView recyclerView;
 
     /**
      * OnCreate of the activity
@@ -86,7 +86,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
     public void onItemClick(View view, Item item) {
         //Display detail of the item in a dedicated activity
         Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra("Item", item);
+        intent.putExtra(Item.SHARED_PREFERENCE_ITEM_TITLE, item.title);
+        intent.putExtra(Item.SHARED_PREFERENCE_ITEM_DESCRIPTION, item.description);
+        intent.putExtra(Item.SHARED_PREFERENCE_ITEM_LINK, item.link);
+        intent.putExtra(Enclosure.SHARED_PREFERENCE_ITEM_ENCLOSURE_URL, item.enclosure != null ? item.enclosure.getUrl() : null);
         startActivity(intent);
     }
 }

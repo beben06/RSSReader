@@ -11,6 +11,10 @@ import java.io.Serializable;
 @Root(strict = false)
 public class Item implements Serializable {
 
+    public static final String SHARED_PREFERENCE_ITEM_TITLE = "shared_preference_item_title";
+    public static final String SHARED_PREFERENCE_ITEM_LINK = "shared_preference_item_link";
+    public static final String SHARED_PREFERENCE_ITEM_DESCRIPTION = "shared_preference_item_description";
+
     @Element(name = "title")
     public String title;
 

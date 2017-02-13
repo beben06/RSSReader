@@ -11,6 +11,8 @@ import java.io.Serializable;
 @Root(strict = false)
 public class Enclosure implements Serializable {
 
+    public static final String SHARED_PREFERENCE_ITEM_ENCLOSURE_URL = "shared_preference_item_enclosure_url";
+
     @Attribute(name = "url")
     private String url;
 
