@@ -15,8 +15,12 @@ import com.dandine.benjamin.rssreader.model.RSS;
 import com.dandine.benjamin.rssreader.network.ApiClient;
 import com.dandine.benjamin.rssreader.network.ApiInterface;
 
-import retrofit2.Call;
-import retrofit2.Callback;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Response;
 
 /**
@@ -27,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
 
     //Base url of the website to fetch the RSS
     public static final String BASE_URL = " http://www.lemonde.fr";
+    CompositeDisposable compositeDisposable;
     private RecyclerViewAdapter.OnItemClickListener onItemClickListener;
     private RecyclerView recyclerView;
 
@@ -40,6 +45,53 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initializeLayout();
+        createObservable();
+
+    }
+
+    public void createObservable() {
+
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+
+        //Get feed RSS
+        Observable<Response<RSS>> observableRSS = apiService.getRSS();
+        observableRSS.observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Response<RSS>>() {
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Response<RSS> response) {
+
+                        if (response.isSuccessful()) {
+                            //Populate adapter of the recycler view
+                            RecyclerViewAdapter adapter = new RecyclerViewAdapter(response.body().channel.items, onItemClickListener);
+                            recyclerView.setAdapter(adapter);
+                        } else {
+                            //An error from server has been received
+                            Toast.makeText(getApplicationContext(), getString(R.string.error_access_rss), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Toast.makeText(getApplicationContext(), getString(R.string.error_network), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    public void initializeLayout() {
+
         //Interface to manage click on the items of the recyclerView
         onItemClickListener = this;
 
@@ -51,29 +103,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        //Get feed RSS
-        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-        Call<RSS> call = apiService.getRSS();
-        call.enqueue(new Callback<RSS>() {
-
-            @Override
-            public void onResponse(Call<RSS> call, Response<RSS> response) {
-                if (response.isSuccessful()) {
-                    //Populate adapter of the recycler view
-                    RecyclerViewAdapter adapter = new RecyclerViewAdapter(response.body().channel.items, onItemClickListener);
-                    recyclerView.setAdapter(adapter);
-                } else {
-                    //An error from server has been received
-                    Toast.makeText(getApplicationContext(), getString(R.string.error_access_rss), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<RSS> call, Throwable t) {
-                // something went completely south (like no internet connection)
-                Toast.makeText(getApplicationContext(), getString(R.string.error_network), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     /**
@@ -92,4 +121,5 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
         intent.putExtra(Enclosure.SHARED_PREFERENCE_ITEM_ENCLOSURE_URL, item.enclosure != null ? item.enclosure.getUrl() : null);
         startActivity(intent);
     }
+
 }

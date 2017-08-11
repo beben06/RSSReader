@@ -1,6 +1,7 @@
 package com.dandine.benjamin.rssreader.network;
 
 import com.dandine.benjamin.rssreader.MainActivity;
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.concurrent.TimeUnit;
 
@@ -33,6 +34,7 @@ public class ApiClient {
 
             retrofit = new Retrofit.Builder()
                     .baseUrl(MainActivity.BASE_URL)
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(SimpleXmlConverterFactory.create())
                     .client(okHttpClient)
                     .build();

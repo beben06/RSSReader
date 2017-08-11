@@ -2,7 +2,8 @@ package com.dandine.benjamin.rssreader.network;
 
 import com.dandine.benjamin.rssreader.model.RSS;
 
-import retrofit2.Call;
+import io.reactivex.Observable;
+import retrofit2.Response;
 import retrofit2.http.GET;
 
 /**
@@ -11,6 +12,6 @@ import retrofit2.http.GET;
 public interface ApiInterface {
 
     @GET("/rss/une.xml")
-    Call<RSS> getRSS();
+    Observable<Response<RSS>> getRSS();
 
 }
