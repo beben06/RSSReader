@@ -1,4 +1,4 @@
-package com.dandine.benjamin.rssreader.model;
+package com.dandine.benjamin.rssreader.data.source.model;
 
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;

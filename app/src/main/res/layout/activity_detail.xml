@@ -1,46 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/font_size_title"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/font_size_title"
-    tools:context="com.dandine.benjamin.rssreader.DetailActivity">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/image"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"/>
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="title"
-        android:textStyle="bold"
-        android:textSize="@dimen/font_size_title"
-        android:layout_below="@+id/image"
-        android:layout_marginTop="@dimen/margin_small"/>
-
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
-        android:layout_marginTop="@dimen/margin_small"/>
-
-    <Button
-        android:id="@+id/button"
-        android:theme="@style/AppTheme.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/button_read_more"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:layout_below="@+id/description"/>
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/font_size_title"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/font_size_title"
+        tools:context="com.dandine.benjamin.rssreader.item.ItemDetailActivity">
 
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="title"
+            android:textSize="@dimen/font_size_title"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_marginTop="@dimen/margin_small" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/description"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:text="@string/button_read_more"
+            android:theme="@style/AppTheme.Button" />
+
+    </RelativeLayout>
+</ScrollView>
+

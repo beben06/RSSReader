@@ -1,4 +1,4 @@
-package com.dandine.benjamin.rssreader.model;
+package com.dandine.benjamin.rssreader.data.source.model;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
@@ -8,7 +8,7 @@ import org.simpleframework.xml.Root;
  */
 
 @Root(strict = false)
-public class RSS {
+public class RSSFeed {
 
     @Element(required = false)
     public Channel channel;

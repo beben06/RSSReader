@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dandine.benjamin.rssreader.R;
-import com.dandine.benjamin.rssreader.model.Item;
+import com.dandine.benjamin.rssreader.data.source.model.Item;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
